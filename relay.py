@@ -15,6 +15,22 @@ GPIO.setup(17, GPIO.OUT) # last
 time.sleep(1)
 
 
+GPIO.output(23, 1)
+time.sleep(1)
+GPIO.output(25, 1)
+time.sleep(1)
+GPIO.output(27, 1)
+time.sleep(1)
+GPIO.output(24, 1)
+time.sleep(1)
+GPIO.output(22, 1)
+time.sleep(1)
+GPIO.output(17, 1)
+time.sleep(1)
+
+time.sleep(10)
+
+
 
 #for x in range(1, 30):
 #	print x
