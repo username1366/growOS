@@ -143,6 +143,8 @@ def sqlite_init(connect):
 	cursor = connect.cursor()
 	cursor.execute("CREATE TABLE sensors (id INTEGER PRIMARY KEY, temp REAL, hum REAL, temp_sensor_status, hum_sensor_status, timestamp REAL, date DATE DEFAULT (datetime('now','localtime')))")
 	cursor.execute("CREATE TABLE log (id INTEGER PRIMARY KEY, message TEXT, timestamp REAL, datetime DATE DEFAULT (datetime('now','localtime')))")
+	cursor.execute("CREATE TABLE device_status (led INTEGER, cool INTEGER, pump INTEGER))")
+	cursor.execute("INSERT INTO device_status VALUES (0, 0, 0)")
 	#cursor.execute("CREATE INDEX date ON sensors (date)")
 	print "All tables was created\n"
 	return cursor
