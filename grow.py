@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-execfile("functions.py")
+from functions import *
 
 grow_day_duration = 16
 grow_night_duratin = 8
