@@ -1,2 +1,4 @@
 *.pyc
 grow.db
+init_time
+day_of_grow
