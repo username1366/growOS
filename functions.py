@@ -85,6 +85,11 @@ def write_config(json_config, config_path = 'config.json'):
 	json_file.close()
 
 def readDHT22(amount_of_trying = 3):
+	# Initiate GPIO for pigpio
+	pi = pigpio.pi()
+	# Setup the sensor
+	dht22 = DHT22.sensor(pi, 4) # use the actual GPIO pin name
+	dht22.trigger()
 	while 'temp' not in locals() or 'hum' not in locals() or temp == -999 or hum == -999:
 		if amount_of_trying == 0:
 			sqlite_insert_into_log("Temp/Hum sensor doesn't work")
