@@ -218,9 +218,6 @@ while True:
 	if hour_of_cycle >= 0 and hour_of_cycle < grow_day_duration:
 		print "Day!"
 		sqlite_insert_into_log("Day!")
-		enable_watering()
-		time.sleep(2)
-		disable_watering()
 		enable_led()
 		### ENABLE WATERING ###
 		### DISABLE WATERING ###
@@ -238,11 +235,14 @@ while True:
 		sqlite_insert_into_log("New day!")
 		diff = 0
 		inc_day_of_grow()
-		init_time = init(reset = 1)
+		init_time = init(reset = 1)		
+		enable_watering()
+		time.sleep(2)
+		disable_watering()
 		#if debug:
 		break
 
-	time.sleep(chronon)
+	#time.sleep(chronon)
 	
 
 
