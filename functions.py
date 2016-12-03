@@ -27,6 +27,7 @@ def init(reset = 0):
 def relay_init(relay_status = 0):
 
 	GPIO.setmode(GPIO.BCM)
+	GPIO.setwarnings(False)
 	GPIO.setup(23, GPIO.OUT) # First
 	GPIO.setup(25, GPIO.OUT) # Second
 	GPIO.setup(27, GPIO.OUT) # Third
