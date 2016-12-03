@@ -43,21 +43,27 @@ def relay_init(relay_status = 0):
 
 def enable_led():
 	GPIO.output(23, 1)
+	sqlite_update_led(1)
 
 def enable_cool():
 	GPIO.output(25, 1)
+	sqlite_update_cool(1)
 
-def enable_watering():
+def enable_pump():
 	GPIO.output(27, 1)
+	sqlite_update_pump(1)
 
 def disable_led():
 	GPIO.output(23, 0)
+	sqlite_update_led(0)
 
 def disable_cool():
 	GPIO.output(25, 0)
+	sqlite_update_cool(0)
 
-def disable_watering():
+def disable_pump():
 	GPIO.output(27, 0)
+	sqlite_update_pump(0)
 
 def init_config():
 	config = '''
@@ -164,6 +170,24 @@ def sqlite_insert_into_sensors(temp, hum):
 def sqlite_insert_into_log(message):
 	connect, cursor = sqlite_connect()
 	cursor.execute("INSERT INTO log (message, timestamp) VALUES (?, ?)", (message, time.time()))
+	connect.commit()
+	connect.close()
+
+def sqlite_update_led(status):
+	connect, cursor = sqlite_connect()
+	cursor.execute("UPDATE device_status set led = ?", status)
+	connect.commit()
+	connect.close()
+
+def sqlite_update_cool(status):
+	connect, cursor = sqlite_connect()
+	cursor.execute("UPDATE device_status set cool = ?", status)
+	connect.commit()
+	connect.close()
+
+def sqlite_update_pump(status):
+	connect, cursor = sqlite_connect()
+	cursor.execute("UPDATE device_status set pump = ?", status)
 	connect.commit()
 	connect.close()
 
