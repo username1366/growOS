@@ -11,7 +11,7 @@ relay_init()
 disable_led()
 disable_cool()
 disable_pump()
-time.sleep(5)
+time.sleep(1)
 
 if debug:
 	diff = 0
