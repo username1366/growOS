@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-import functions.py
-
+execfile("functions.py")
 
 grow_day_duration = 16
 grow_night_duratin = 8
@@ -22,7 +21,7 @@ if debug:
 	diff = 0
 
 while True:
-	#if debug:	
+	#if debug:
 	#	print diff
 	#	diff += 1
 	#else:
@@ -56,7 +55,7 @@ while True:
 		sqlite_insert_into_log("New day!")
 		diff = 0
 		inc_day_of_grow()
-		init_time = init(reset = 1)		
+		init_time = init(reset = 1)
 		enable_watering()
 		time.sleep(2)
 		disable_watering()
@@ -64,9 +63,3 @@ while True:
 		break
 
 	#time.sleep(chronon)
-	
-
-
-
-
-
