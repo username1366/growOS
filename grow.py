@@ -24,6 +24,40 @@ def init(reset = 0):
 	else:
 		return write_init_time_file()
 
+def relay_init(relay_status = 0):
+
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(23, GPIO.OUT) # First
+	GPIO.setup(25, GPIO.OUT) # Second
+	GPIO.setup(27, GPIO.OUT) # Third
+	GPIO.setup(24, GPIO.OUT) # Fourth
+	GPIO.setup(22, GPIO.OUT) # Fifth
+	GPIO.setup(17, GPIO.OUT) # last
+	GPIO.output(23, relay_status)
+	GPIO.output(25, relay_status)
+	GPIO.output(27, relay_status)
+	GPIO.output(24, relay_status)
+	GPIO.output(22, relay_status)
+	GPIO.output(17, relay_status)
+
+def enable_led():
+	GPIO.output(23, 1)
+
+def enable_cool():
+	GPIO.output(25, 1)
+
+def enable_watering():
+	GPIO.output(27, 1)
+
+def disable_led():
+	GPIO.output(23, 0)
+
+def disable_cool():
+	GPIO.output(25, 0)
+
+def disable_watering():
+	GPIO.output(27, 0)
+
 def init_config():
 	config = '''
 	{
@@ -162,6 +196,8 @@ pi = pigpio.pi()
 dht22 = DHT22.sensor(pi, 4) # use the actual GPIO pin name
 dht22.trigger()
 
+relay_init()
+
 if debug:
 	diff = 0
 
@@ -182,6 +218,10 @@ while True:
 	if hour_of_cycle >= 0 and hour_of_cycle < grow_day_duration:
 		print "Day!"
 		sqlite_insert_into_log("Day!")
+		enable_watering()
+		time.sleep(2)
+		disable_watering()
+		enable_led()
 		### ENABLE WATERING ###
 		### DISABLE WATERING ###
 		### ENABLE LED ###
@@ -191,6 +231,7 @@ while True:
 	elif hour_of_cycle >= grow_day_duration and hour_of_cycle < grow_day_duration + grow_night_duratin:
 		print "Night!"
 		sqlite_insert_into_log("Night!")
+		disable_led()
 		### DISABLE LED ###
 	else:
 		print "New day!"
