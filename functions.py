@@ -90,7 +90,7 @@ def write_config(json_config, config_path = 'config.json'):
 	json_file.write(json.dumps(json_config))
 	json_file.close()
 
-def readDHT22(amount_of_trying = 3):
+def readDHT22(amount_of_trying = 5):
 	# Initiate GPIO for pigpio
 	pi = pigpio.pi()
 	# Setup the sensor
