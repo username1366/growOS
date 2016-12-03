@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Grow Monitor</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Temperature', 'Humidity'],
+          {% for item in data %}
+              [{{item}}, {{item}}, {{item}}],
+          {% endfor %}
+        ]);
+
+
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Temperature', 'Humidity'],
+          {% for sensor_data in sensors %}
+            
+            ['{{ sensor_data[2] }}', {{ sensor_data[0]|int }}, {{ sensor_data[1]|int }}],
+          {% endfor %}
+        ]);
+  
+
+
+        var options = {
+          title: 'Temperature and Humidity',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+ 
+        <div class="row marketing">
+            <div class="col-md-4">
+                <div id="curve_chart" style="width: 900px; height: 500px"></div>
+            </div>
+        </div>
+ 
+        <footer class="footer">
+            <p>&copy; Grow Company 2016</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
