@@ -175,19 +175,19 @@ def sqlite_insert_into_log(message):
 
 def sqlite_update_led(status):
 	connect, cursor = sqlite_connect()
-	cursor.execute("UPDATE device_status set led = ?", status)
+	cursor.execute("UPDATE device_status set led = ?", str(status))
 	connect.commit()
 	connect.close()
 
 def sqlite_update_cool(status):
 	connect, cursor = sqlite_connect()
-	cursor.execute("UPDATE device_status set cool = ?", status)
+	cursor.execute("UPDATE device_status set cool = ?", str(status))
 	connect.commit()
 	connect.close()
 
 def sqlite_update_pump(status):
 	connect, cursor = sqlite_connect()
-	cursor.execute("UPDATE device_status set pump = ?", status)
+	cursor.execute("UPDATE device_status set pump = ?", str(status))
 	connect.commit()
 	connect.close()
 
