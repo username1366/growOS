@@ -4,7 +4,7 @@ from functions import *
 
 grow_day_duration = 2
 grow_night_duration = 1
-chronon = 1
+chronon = 60
 debug = 1
 init_time = init()
 relay_init()
@@ -52,4 +52,4 @@ while True:
 		#if debug:
 		#break
 
-	time.sleep(chronon)
+	#time.sleep(chronon)
