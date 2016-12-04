@@ -52,4 +52,4 @@ while True:
 		#if debug:
 		#break
 
-	#time.sleep(chronon)
+	time.sleep(chronon)
