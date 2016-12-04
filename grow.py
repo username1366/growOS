@@ -23,18 +23,26 @@ while True:
 
 	hour_of_cycle =  int(int(time.time() - init_time) / 3600)
 	print "Current hour is:" + str(hour_of_cycle)
+
+	#if mode == 'auto':
+	#	pass
+	#elif mode == 'manual':
+	#	pass
+	#else
+	#	mode = 'auto'
+
 	if hour_of_cycle >= 0 and hour_of_cycle < grow_day_duration: # DAY
 		print "Day!"
 		sqlite_insert_into_log("Day!")		
 		enable_led()
-		print "led was enabled"
+		print "LED: enabled"
 		print hour_of_cycle
 
 	elif hour_of_cycle >= grow_day_duration and hour_of_cycle < (grow_day_duration + grow_night_duration):
 		print "Night!"
 		sqlite_insert_into_log("Night!")
 		disable_led()	
-		print "led was disabled"
+		print "LED: disabled"
 		print hour_of_cycle
 
 	else:
@@ -45,10 +53,10 @@ while True:
 		inc_day_of_grow()
 		init_time = init(reset = 1)
 		enable_pump()
-		print "pump was enabled"
+		print "PUMP: enabled"
 		time.sleep(2)
 		disable_pump()		
-		print "pump was disabled"
+		print "PUMP: disabled"
 		#if debug:
 		#break
 
