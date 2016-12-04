@@ -4,14 +4,13 @@ from functions import *
 
 grow_day_duration = 2
 grow_night_duration = 1
-chronon = 10
+chronon = 1
 debug = 1
 init_time = init()
 relay_init()
 disable_led()
 disable_cool()
 disable_pump()
-time.sleep(1)
 
 if debug:
 	diff = 0
