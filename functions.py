@@ -104,7 +104,7 @@ def readDHT22(amount_of_trying = 5):
 		temp = dht22.temperature()
 		hum = dht22.humidity()
 		amount_of_trying -= 1
-		time.sleep(2)
+		#time.sleep(2)
 
 	return (temp, hum)
 
